@@ -1,0 +1,33 @@
+# This Cloud Build configuration file defines the steps required to
+# build a Docker image, push it to Artifact Registry, and then
+# deploy it to Cloud Run.
+  
+steps:
+# Build the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'build'
+    - '-t'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/supplement-dx-api-docker-repository:$REVISION_ID'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/supplement-dx-api-docker-repository:latest'
+    - '.'
+
+# Push the Docker image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    - 'push'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/supplement-dx-api-docker-repository:$REVISION_ID'
+
+# Deploy to Cloud Run
+# - name: 'gcr.io/cloud-builders/gcloud'
+#   args:
+#     - 'run'
+#     - 'deploy'
+#     - 'my-service'  # place-holder
+#     - '--image'
+#     - $LOCATION-docker.pkg.dev/$PROJECT_ID/supplement-dx-api-docker-repository:$REVISION_ID'
+#     - '--allow-unauthenticated'   
+
+ 
+options:
+  logging: 'CLOUD_LOGGING_ONLY'
