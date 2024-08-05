@@ -9,6 +9,7 @@ steps:
     - 'build'
     - '-t'
     - 'asia-northeast1-docker.pkg.dev/testprojectcicd-430610/quickstart-docker-repo/myimage:$REVISION_ID'
+    - '-t'
     - 'asia-northeast1-docker.pkg.dev/testprojectcicd-430610/quickstart-docker-repo/myimage:latest'
     - '.'
 
