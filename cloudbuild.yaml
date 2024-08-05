@@ -8,15 +8,15 @@ steps:
   args:
     - 'build'
     - '-t'
-    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:$REVISION_ID'
-    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:latest'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo:$REVISION_ID'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo:latest'
     - '.'
 
 # Push the Docker image
 - name: 'gcr.io/cloud-builders/docker'
   args:
     - 'push'
-    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME:$REVISION_ID'
+    - '$LOCATION-docker.pkg.dev/$PROJECT_ID/quickstart-docker-repo:$REVISION_ID'
 
 # Deploy to Cloud Run
 # - name: 'gcr.io/cloud-builders/gcloud'
